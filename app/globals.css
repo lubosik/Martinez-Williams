@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-neutral-darkest bg-white;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-size: 16px; /* Prevents iOS zoom on input focus, ensures readable text */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+    line-height: 1.2;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+    line-height: 1.3;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+    line-height: 1.4;
+  }
+
+  p {
+    @apply text-base md:text-lg;
+    line-height: 1.6;
+  }
+  
+  /* Ensure all text remains readable without zooming */
+  * {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Smooth transitions for interactive elements */
+  .transition-smooth {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Fade-in animation for sections */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+}
+
+/* Responsive breakpoints */
+/* Mobile: 320px - 767px (default, no prefix) */
+/* Tablet: 768px - 1023px (md:) */
+/* Desktop: 1024px+ (lg:, xl:, 2xl:) */
+
+/* Ensure minimum tap target sizes (48x48px) */
+@layer components {
+  .tap-target {
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  /* Mobile header spacing */
+  .mobile-header-spacing {
+    padding-top: 60px;
+  }
+  
+  @media (min-width: 768px) {
+    .mobile-header-spacing {
+      padding-top: 0;
+    }
+  }
+  
+  /* Enhanced hover effects for cards */
+  .card-hover {
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  .card-hover:hover {
+    @apply shadow-lg transform -translate-y-1;
+  }
+  
+  /* Button hover effects */
+  .btn-hover {
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  .btn-hover:hover {
+    @apply transform scale-105;
+  }
+  
+  /* Smooth scroll behavior (already in base layer, but ensuring it's applied) */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Section spacing - generous whitespace */
+  section {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+  
+  /* CLS Prevention - Reserve space for dynamic content */
+  #lead-form {
+    min-height: 400px; /* Reserve space for form to prevent CLS */
+  }
+  
+  /* Prevent layout shift from images */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Ensure containers maintain aspect ratio */
+  .image-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  }
+}
+
